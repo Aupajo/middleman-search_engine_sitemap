@@ -24,7 +24,7 @@ module MiddlemanServerHelpers
       instance = Middleman::Application.server.inst do
         # Require the pagination extension after the
         # server has booted, as would typically happen.
-        require File.expand_path('../../../lib/middleman_extension', __FILE__)
+        require File.expand_path('../../../lib/middleman/search_engine_sitemap', __FILE__)
 
         instance_exec(&block)
       end
