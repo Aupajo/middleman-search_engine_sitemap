@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Middleman::SearchEngineSitemap::VERSION
   spec.authors       = ["Pete Nicholls"]
   spec.email         = ["pete@metanation.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Adds a sitemap.xml file to your Middleman site for search engines.}
+  spec.description   = %q{Adds a sitemap.xml file (following the sitemaps.org protocol) to your Middleman site for major search engines including Google.}
+  spec.homepage      = "https://github.com/Aupajo/middleman-search_engine_sitemap"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

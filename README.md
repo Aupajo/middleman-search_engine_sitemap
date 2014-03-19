@@ -1,20 +1,10 @@
-# Middleman::SearchEngineSitemap
+# Middleman Search Engine Sitemap
 
-TODO: Write a gem description
+Adds a sitemap.xml file (following the sitemaps.org protocol) to your Middleman site for major search engines including Google.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'middleman-search_engine_sitemap'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install middleman-search_engine_sitemap
+TODO: Write installation instructions
 
 ## Usage
 
