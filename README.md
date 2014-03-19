@@ -35,7 +35,7 @@ set :url_root, 'http://example.com'
 activate :search_engine_sitemap
 ```
 
-The sitemap will become available at http://localhost:4567/sitemap.xml.
+The sitemap will become available at [http://localhost:4567/sitemap.xml](http://localhost:4567/sitemap.xml).
 
 Pages have a priority of 0.5 and a change frequency of `monthly` by default.
 
