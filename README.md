@@ -6,7 +6,19 @@ Adds a sitemap.xml file (following the sitemaps.org protocol) to your Middleman 
 
 ## Installation
 
-TODO: Write installation instructions
+Add this line to your Middleman site's Gemfile:
+
+```ruby
+gem 'middleman-search_engine_sitemap'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install middleman-pagination
 
 ## Usage
 
