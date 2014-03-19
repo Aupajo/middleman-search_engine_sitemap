@@ -11,7 +11,7 @@ For more information on the standard itself, please visit http://www.sitemaps.or
 
 ## Installation
 
-Add this line to your Middleman site's Gemfile:
+Add this line to your Middleman site's `Gemfile`:
 
 ```ruby
 gem 'middleman-search_engine_sitemap'
@@ -27,13 +27,15 @@ Or install it yourself as:
 
 ## Usage
 
-Inside your `config.rb`:
+Place the following inside your `config.rb`:
 
 ```ruby
 set :url_root, 'http://example.com'
 
 activate :search_engine_sitemap
 ```
+
+The sitemap will become available at http://localhost:4567/sitemap.xml.
 
 Pages have a priority of 0.5 and a change frequency of `monthly` by default.
 
