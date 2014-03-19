@@ -3,7 +3,11 @@
 [![Build Status](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap.png?branch=master)](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap)
 [![Code Climate](https://codeclimate.com/github/Aupajo/middleman-search_engine_sitemap.png)](https://codeclimate.com/github/Aupajo/middleman-search_engine_sitemap)
 
-Adds a sitemap.xml file (following the [sitemaps.org protocol](http://www.sitemaps.org/protocol.html)) to your Middleman site for major search engines including Google.
+[Sitemaps](http://www.sitemaps.org/) are an open standard to tell search engines (such as Google) about each page on your site, how often they're updated, and how important each page is, relative to other pages on your site.
+
+This project aims to simplify including the sitemap XML file along with your Middleman site, so that you can better instruct search engines on how to index your pages.
+
+For more information on the standard itself, please visit http://www.sitemaps.org/.
 
 ## Installation
 
@@ -19,7 +23,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install middleman-pagination
+    $ gem install middleman-search_engine_sitemap
 
 ## Usage
 
@@ -31,17 +35,16 @@ set :url_root, 'http://example.com'
 activate :search_engine_sitemap
 ```
 
-Pages have a priority of 0.5 and a change frequency of "monthly" by default.
+Pages have a priority of 0.5 and a change frequency of `monthly` by default.
 
-You can change this by passing in options:
+You can change these values by passing in options to the `activate` directive:
 
 ```ruby
 activate :search_engine_sitemap, default_priority: 0.5,
-                                 default_change_frequency: "monthly",
-                                 sitemap_xml_path: "sitemap.xml"
+                                 default_change_frequency: "monthly"
 ```
 
-You can override the priority or change frequency on page by using frontmatter:
+You can override the priority or change frequency on particular pages by using frontmatter:
 
 ```erb
 ---
@@ -53,7 +56,11 @@ change_frequency: daily
 Welcome to my blog!
 ```
 
-### On priority
+### Priority
+
+A number between 0.0 and 1.0, representing how important the page is, relevant to other pages on your site.
+
+The default value is 0.5.
 
 From [sitemaps.org](http://www.sitemaps.org/protocol.html):
 
@@ -62,6 +69,12 @@ From [sitemaps.org](http://www.sitemaps.org/protocol.html):
 > Please note that the priority you assign to a page is not likely to influence the position of your URLs in a search engine's result pages. Search engines may use this information when selecting between URLs on the same site, so you can use this tag to increase the likelihood that your most important pages are present in a search index.
 
 > Also, please note that assigning a high priority to all of the URLs on your site is not likely to help you. Since the priority is relative, it is only used to select between URLs on your site.
+
+### Change Frequency
+
+Possible values are: `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly`, `never`.
+
+The default value is `monthly`.
 
 ## Contributing
 
