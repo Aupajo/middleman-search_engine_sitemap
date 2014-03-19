@@ -1,0 +1,1 @@
+# Auto-register extension for Middleman
