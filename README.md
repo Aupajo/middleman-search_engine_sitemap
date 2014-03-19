@@ -1,5 +1,7 @@
 # Middleman Search Engine Sitemap
 
+[![Build Status](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap.png?branch=master)](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap)
+
 Adds a sitemap.xml file (following the sitemaps.org protocol) to your Middleman site for major search engines including Google.
 
 ## Installation
