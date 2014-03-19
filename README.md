@@ -37,6 +37,8 @@ activate :search_engine_sitemap
 
 The sitemap will become available at [http://localhost:4567/sitemap.xml](http://localhost:4567/sitemap.xml).
 
+### Settings
+
 Pages have a priority of 0.5 and a change frequency of `monthly` by default.
 
 You can change these values by passing in options to the `activate` directive:
@@ -46,7 +48,9 @@ activate :search_engine_sitemap, default_priority: 0.5,
                                  default_change_frequency: "monthly"
 ```
 
-You can override the priority or change frequency on particular pages by using frontmatter:
+### Specifying priority and change frequency for a page
+
+You can override the priority or change frequency for a particular page by using frontmatter:
 
 ```erb
 ---
