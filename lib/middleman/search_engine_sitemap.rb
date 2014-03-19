@@ -11,7 +11,7 @@ module Middleman
       option :default_change_frequency, 'monthly', 'Default page priority for search engine sitemap'
       option :sitemap_xml_path, 'sitemap.xml', 'Path to search engine sitemap'
 
-      def before_configuration
+      def after_configuration
         register_extension_templates
       end
 
