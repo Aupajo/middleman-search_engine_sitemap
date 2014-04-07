@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap.png?branch=master)](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap)
 [![Code Climate](https://codeclimate.com/github/Aupajo/middleman-search_engine_sitemap.png)](https://codeclimate.com/github/Aupajo/middleman-search_engine_sitemap)
+[![Dependency Status](https://gemnasium.com/Aupajo/middleman-search_engine_sitemap.svg)](https://gemnasium.com/Aupajo/middleman-search_engine_sitemap)
 
 [Sitemaps](http://www.sitemaps.org/) are an open standard to tell search engines (such as Google) about each page on your site, how often they're updated, and how important each page is, relative to other pages on your site.
 
