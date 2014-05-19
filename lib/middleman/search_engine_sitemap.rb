@@ -19,6 +19,16 @@ module Middleman
         resources << sitemap_resource
       end
 
+      helpers do
+        def resources_for_sitemap
+          page_ext = File.extname(index_file)
+
+          sitemap.resources.select do |page|
+            page.path.end_with?(page_ext)
+          end
+        end
+      end
+
       private
 
       def register_extension_templates

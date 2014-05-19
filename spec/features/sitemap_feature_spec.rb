@@ -4,7 +4,7 @@ require 'nokogiri'
 describe "Search engine sitemaps", :feature do
   include XmlHelpers
 
-  it "produces a sitemap" do
+  it "produces a valid sitemap" do
     run_site 'dummy' do
       set :url_root, 'http://example.com'
       activate :search_engine_sitemap
