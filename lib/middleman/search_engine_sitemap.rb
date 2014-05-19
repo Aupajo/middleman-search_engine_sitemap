@@ -10,6 +10,7 @@ module Middleman
       option :default_priority, 0.5, 'Default page priority for search engine sitemap'
       option :default_change_frequency, 'monthly', 'Default page priority for search engine sitemap'
       option :sitemap_xml_path, 'sitemap.xml', 'Path to search engine sitemap'
+      option :exclude_attr, 'hide_from_sitemap'
 
       def after_configuration
         register_extension_templates
@@ -19,17 +20,31 @@ module Middleman
         resources << sitemap_resource
       end
 
+      def resource_in_sitemap?(resource)
+        is_page?(resource) && not_excluded?(resource)
+      end
+
       helpers do
         def resources_for_sitemap
-          page_ext = File.extname(index_file)
-
-          sitemap.resources.select do |page|
-            page.path.end_with?(page_ext)
+          sitemap.resources.select do |resource|
+            extensions[:search_engine_sitemap].resource_in_sitemap?(resource)
           end
         end
       end
 
       private
+
+      def is_page?(resource)
+        resource.path.end_with?(page_ext)
+      end
+
+      def not_excluded?(resource)
+        !resource.ignored? && !resource.data[options.exclude_attr]
+      end
+
+      def page_ext
+        File.extname(app.index_file)
+      end
 
       def register_extension_templates
         # We call reload_path to register the templates directory with Middleman.

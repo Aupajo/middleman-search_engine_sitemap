@@ -40,6 +40,27 @@ activate :search_engine_sitemap
 
 The sitemap will become available at [http://localhost:4567/sitemap.xml](http://localhost:4567/sitemap.xml).
 
+## Excluding pages
+
+You can add a `hide_from_sitemap` attribute to your page's frontmatter to omit it from the sitemap:
+
+```erb
+---
+title: My hidden page
+hide_from_sitemap: true
+---
+
+Shh. Don't tell anyone I'm here.
+```
+
+If you would like to use a different frontmatter attribute, you can specify it in the extension options:
+
+```ruby
+activate :search_engine_sitemap, exclude_attr: 'hidden'
+```
+
+You would then be able to use `hidden: true` in place of `hide_from_sitemap: true`.
+
 ### Settings
 
 Pages have a priority of 0.5 and a change frequency of `monthly` by default.
