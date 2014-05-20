@@ -4,10 +4,12 @@ require 'nokogiri'
 describe "Search engine sitemaps", :feature do
   include XmlHelpers
 
-  it "produces a sitemap" do
+  it "produces a valid sitemap" do
     run_site 'dummy' do
       set :url_root, 'http://example.com'
       activate :search_engine_sitemap
+      
+      ignore '/ignored.html'
     end
 
     visit '/sitemap.xml'
@@ -33,6 +35,9 @@ describe "Search engine sitemaps", :feature do
       'priority'   => '0.5',
       'changefreq' => 'daily'
     )
+
+    expect(doc.to_s).not_to include('http://example.com/ignored.html')
+    expect(doc.to_s).not_to include('http://example.com/ignored-in-frontmatter.html')
   end
 
   it "works with directory indexes" do
@@ -40,6 +45,8 @@ describe "Search engine sitemaps", :feature do
       set :url_root, 'http://example.com'
       activate :directory_indexes
       activate :search_engine_sitemap
+
+      ignore '/ignored.html'
     end
 
     visit '/sitemap.xml'
@@ -62,5 +69,8 @@ describe "Search engine sitemaps", :feature do
       'priority'   => '0.5',
       'changefreq' => 'daily'
     )
+
+    expect(doc.to_s).not_to include('http://example.com/ignored/')
+    expect(doc.to_s).not_to include('http://example.com/ignored-in-frontmatter/')
   end
 end
