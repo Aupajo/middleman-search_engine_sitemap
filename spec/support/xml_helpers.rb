@@ -2,19 +2,17 @@ module XmlHelpers
   extend RSpec::Matchers::DSL
 
   matcher :validate_against_schema do |schema|
-    @schema = schema
-
     match do |actual|
-      xsd = Nokogiri::XML::Schema(File.read(@schema))
+      xsd = Nokogiri::XML::Schema(schema.read)
       @validation_errors = xsd.validate(actual)
       @validation_errors.empty?
     end
 
-    failure_message_for_should do |actual|
+    failure_message do |actual|
       num_errors = @validation_errors.length
       error_count = "#{num_errors} error#{'s' if num_errors > 1}"
 
-      "expected XML to validate against #{@schema}, got #{error_count}:\n" +
+      "expected XML to validate against #{schema}, got #{error_count}:\n" +
         @validation_errors.each_with_index.map do |error, i|
           "  #{i + 1}. #{error}"
         end.join("\n")
@@ -36,7 +34,7 @@ module XmlHelpers
       @attributes = attributes
     end
 
-    failure_message_for_should do |doc|
+    failure_message do |doc|
       expected_xml = "<#{name}>\n"
 
       if @attributes

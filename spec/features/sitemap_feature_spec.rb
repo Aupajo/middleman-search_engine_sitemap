@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'nokogiri'
+require 'pathname'
 
 describe "Search engine sitemaps", :feature do
   include XmlHelpers
@@ -8,13 +9,13 @@ describe "Search engine sitemaps", :feature do
     run_site 'dummy' do
       set :url_root, 'http://example.com'
       activate :search_engine_sitemap
-      
+
       ignore '/ignored.html'
     end
 
     visit '/sitemap.xml'
-    
-    schema = File.expand_path('../../../sitemap.xsd', __FILE__)
+
+    schema = Pathname(__dir__) + '../../sitemap.xsd'
     doc = Nokogiri::XML(last_response.body)
     expect(doc).to validate_against_schema(schema)
 
