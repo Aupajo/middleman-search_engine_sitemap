@@ -67,7 +67,7 @@ activate :search_engine_sitemap, exclude_if: ->(resource) { resource.data.date >
 
 This would exclude any resource with a `date` attribute greater than today.
 
-### Settings
+## Settings
 
 Pages have a priority of 0.5 and a change frequency of `monthly` by default.
 
