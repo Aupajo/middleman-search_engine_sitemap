@@ -91,4 +91,19 @@ describe "Search engine sitemaps", :feature do
     'changefreq' => 'monthly'
     )
   end
+
+  it "ignores resources based on exclude_if result" do
+    run_site 'dummy' do
+      set :url_root, 'http://example.com'
+      activate :search_engine_sitemap,
+        exclude_if: ->(resource) { resource.data.ignored_by_proc }
+
+      ignore '/ignored.html'
+    end
+
+    visit '/sitemap.xml'
+    doc = Nokogiri::XML(last_response.body)
+
+    expect(doc.to_s).not_to include('http://example.com/ignored-by-proc.html')
+  end
 end
