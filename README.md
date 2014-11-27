@@ -24,10 +24,6 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install middleman-search_engine_sitemap
-
 ## Usage
 
 Place the following inside your `config.rb`:
