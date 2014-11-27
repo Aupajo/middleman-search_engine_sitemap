@@ -11,6 +11,7 @@ module Middleman
       option :default_change_frequency, 'monthly', 'Default page priority for search engine sitemap'
       option :sitemap_xml_path, 'sitemap.xml', 'Path to search engine sitemap'
       option :exclude_attr, 'hide_from_sitemap'
+      option :process_url, nil, 'Proc for processing a URL'
 
       def after_configuration
         register_extension_templates
@@ -22,6 +23,10 @@ module Middleman
 
       def resource_in_sitemap?(resource)
         is_page?(resource) && not_excluded?(resource)
+      end
+
+      def process_url(url)
+        options.process_url ? options.process_url.call(url) : url
       end
 
       helpers do

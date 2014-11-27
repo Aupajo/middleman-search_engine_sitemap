@@ -74,4 +74,21 @@ describe "Search engine sitemaps", :feature do
     expect(doc.to_s).not_to include('http://example.com/ignored/')
     expect(doc.to_s).not_to include('http://example.com/ignored-in-frontmatter/')
   end
+
+  it "supports custom URL processing" do
+    run_site 'dummy' do
+      set :url_root, 'http://example.com'
+      activate :directory_indexes
+      activate :search_engine_sitemap, process_url: ->(url) { url.upcase }
+    end
+
+    visit '/sitemap.xml'
+    doc = Nokogiri::XML(last_response.body)
+
+    expect(doc).to contain_node('url').with_children(
+    'loc'        => 'HTTP://EXAMPLE.COM/HOME/',
+    'priority'   => '0.5',
+    'changefreq' => 'monthly'
+    )
+  end
 end

@@ -61,14 +61,14 @@ You would then be able to use `hidden: true` in place of `hide_from_sitemap: tru
 
 Pages have a priority of 0.5 and a change frequency of `monthly` by default.
 
+### Specifying priority and change frequency for a page
+
 You can change these values by passing in options to the `activate` directive:
 
 ```ruby
 activate :search_engine_sitemap, default_priority: 0.5,
                                  default_change_frequency: "monthly"
 ```
-
-### Specifying priority and change frequency for a page
 
 You can override the priority or change frequency for a particular page by using frontmatter:
 
@@ -101,6 +101,18 @@ From [sitemaps.org](http://www.sitemaps.org/protocol.html):
 Possible values are: `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly`, `never`.
 
 The default value is `monthly`.
+
+### Customising the URL
+
+Sometimes, you might want to perform some processing the URL:
+
+```ruby
+activate :search_engine_sitemap, process_url: -> (url) { url.chomp('/') }
+```
+
+The example above would remove a trailing slash from a URL.
+
+The value passed into `process_url` is any object that responds to `call`.
 
 ## Contributing
 
