@@ -12,6 +12,7 @@ module Middleman
       option :sitemap_xml_path, 'sitemap.xml', 'Path to search engine sitemap'
       option :exclude_attr, 'hide_from_sitemap'
       option :process_url, nil, 'Proc for processing a URL'
+      option :exclude_if, ->(resource) { false }
 
       def after_configuration
         register_extension_templates
@@ -44,7 +45,7 @@ module Middleman
       end
 
       def not_excluded?(resource)
-        !resource.ignored? && !resource.data[options.exclude_attr]
+        !resource.ignored? && !resource.data[options.exclude_attr] && !options.exclude_if.call(resource)
       end
 
       def page_ext
