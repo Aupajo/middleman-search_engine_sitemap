@@ -57,16 +57,6 @@ activate :search_engine_sitemap, exclude_attr: 'hidden'
 
 You would then be able to use `hidden: true` in place of `hide_from_sitemap: true`.
 
-### Excluding pages with a lambda
-
-You can also use `exclude_if` to exclude pages based on more complex requirements evaluated within a lambda. For example:
-
-```ruby
-activate :search_engine_sitemap, exclude_if: ->(resource) { resource.data.date > Date.today if resource.data.date }
-```
-
-This would exclude any resource with a `date` attribute greater than today.
-
 ## Settings
 
 Pages have a priority of 0.5 and a change frequency of `monthly` by default.
@@ -111,6 +101,17 @@ From [sitemaps.org](http://www.sitemaps.org/protocol.html):
 Possible values are: `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly`, `never`.
 
 The default value is `monthly`.
+
+### Custom page exclusion
+
+You can also use `exclude_if` to exclude pages based on more complex requirements. For example:
+
+```ruby
+# Exclude all pages which have a date that's after today
+activate :search_engine_sitemap, exclude_if: ->(resource) {
+  resource.data.date && resource.data.date > Date.today
+}
+```
 
 ### Customising the URL
 
