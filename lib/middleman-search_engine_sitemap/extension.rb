@@ -1,10 +1,6 @@
-require "middleman-core"
-require "middleman/search_engine_sitemap/version"
-require "builder"
-
 module Middleman
   module SearchEngineSitemap
-    TEMPLATES_DIR = File.expand_path(File.join('..', 'search_engine_sitemap', 'templates'), __FILE__)
+    TEMPLATES_DIR = File.expand_path(File.join('..', 'templates'), __FILE__)
 
     class Extension < Middleman::Extension
       option :default_priority, 0.5, 'Default page priority for search engine sitemap'
@@ -13,10 +9,6 @@ module Middleman
       option :exclude_attr, 'hide_from_sitemap'
       option :process_url, nil, 'Proc for processing a URL'
       option :exclude_if, ->(resource) { false }
-
-      def after_configuration
-        register_extension_templates
-      end
 
       def manipulate_resource_list(resources)
         resources << sitemap_resource
@@ -49,14 +41,7 @@ module Middleman
       end
 
       def page_ext
-        File.extname(app.index_file)
-      end
-
-      def register_extension_templates
-        # We call reload_path to register the templates directory with Middleman.
-        # The path given to app.files must be relative to the Middleman site's root.
-        templates_dir_relative_from_root = Pathname(TEMPLATES_DIR).relative_path_from(Pathname(app.root))
-        app.files.reload_path(templates_dir_relative_from_root)
+        File.extname(app.config.index_file)
       end
 
       def sitemap_resource
@@ -86,5 +71,3 @@ module Middleman
     end
   end
 end
-
-::Middleman::Extensions.register(:search_engine_sitemap, ::Middleman::SearchEngineSitemap::Extension)
