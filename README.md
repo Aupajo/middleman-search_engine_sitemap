@@ -8,7 +8,7 @@ Version](https://badge.fury.io/rb/middleman-search_engine_sitemap.svg)](http://b
 
 [Sitemaps](http://www.sitemaps.org/) are an open standard to tell search engines (such as Google) about each page on your site, how often they're updated, and how important each page is, relative to other pages on your site.
 
-This project aims to simplify including the sitemap XML file along with your Middleman site, so that you can better instruct search engines on how to index your pages.
+This project aims to simplify serving the sitemap XML file from your Middleman site, so that you can better instruct search engines on how to index your pages.
 
 For more information on the standard itself, please visit http://www.sitemaps.org/.
 
@@ -22,7 +22,7 @@ gem 'middleman-search_engine_sitemap'
 
 And then execute:
 
-    $ bundle
+    bundle
 
 ## Usage
 
@@ -36,32 +36,11 @@ activate :search_engine_sitemap
 
 The sitemap will become available at [http://localhost:4567/sitemap.xml](http://localhost:4567/sitemap.xml).
 
-## Excluding pages
+## Priority and change frequency
 
-You can add a `hide_from_sitemap` attribute to your page's frontmatter to omit it from the sitemap:
+Aside from helping identify which pages for search engines should crawl, you can also indicate which pages are more important than others, and how frequently they change.
 
-```erb
----
-title: My hidden page
-hide_from_sitemap: true
----
-
-Shh. Don't tell anyone I'm here.
-```
-
-If you would like to use a different frontmatter attribute, you can specify it in the extension options:
-
-```ruby
-activate :search_engine_sitemap, exclude_attr: 'hidden'
-```
-
-You would then be able to use `hidden: true` in place of `hide_from_sitemap: true`.
-
-## Settings
-
-Pages have a priority of 0.5 and a change frequency of `monthly` by default.
-
-### Specifying priority and change frequency for a page
+By default, all pages have a priority of `0.5` (out of `1.0`) and a `monthly` change frequency.
 
 You can change these values by passing in options to the `activate` directive:
 
@@ -79,14 +58,14 @@ priority: 1.0
 change_frequency: daily
 ---
 
-Welcome to my blog!
+Welcome to my blog! This page is particularly important, and changes often.
 ```
 
 ### Priority
 
-A number between 0.0 and 1.0, representing how important the page is, relevant to other pages on your site.
+A number between `0.0` and `1.0`, representing how important the page is, relative to other pages on your site.
 
-The default value is 0.5.
+The default value is `0.5`.
 
 From [sitemaps.org](http://www.sitemaps.org/protocol.html):
 
@@ -102,7 +81,26 @@ Possible values are: `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly`,
 
 The default value is `monthly`.
 
-### Custom page exclusion
+## Excluding pages
+
+You can add a `hide_from_sitemap` attribute to your page's frontmatter to omit it from the sitemap:
+
+```erb
+---
+title: My hidden page
+hide_from_sitemap: true
+---
+
+Shh. Don't tell anyone I'm here.
+```
+
+If you would like to use a different frontmatter attribute from `hide_from_sitemap`, you can specify one in the extension options:
+
+```ruby
+activate :search_engine_sitemap, exclude_attr: 'hidden'
+```
+
+This would allow you to use `hidden: true` in place of `hide_from_sitemap: true`.
 
 You can also use `exclude_if` to exclude pages based on more complex requirements. For example:
 
@@ -113,7 +111,9 @@ activate :search_engine_sitemap, exclude_if: ->(resource) {
 }
 ```
 
-### Customising the URL
+The value passed into `exclude_if` can any object that responds to `call`.
+
+## Customising the URL
 
 Sometimes, you might want to perform some processing the URL:
 
@@ -123,7 +123,7 @@ activate :search_engine_sitemap, process_url: -> (url) { url.chomp('/') }
 
 The example above would remove a trailing slash from a URL.
 
-The value passed into `process_url` is any object that responds to `call`.
+The value passed into `process_url` can any object that responds to `call`.
 
 ## Contributing
 
