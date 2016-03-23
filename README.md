@@ -115,7 +115,7 @@ The value passed into `exclude_if` can any object that responds to `call`.
 
 ## Customising the URL
 
-Sometimes, you might want to perform some processing the URL:
+Sometimes, you might want to alter the URLs that search engines will crawl:
 
 ```ruby
 activate :search_engine_sitemap, process_url: -> (url) { url.chomp('/') }
