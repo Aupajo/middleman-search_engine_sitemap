@@ -14,10 +14,6 @@ module Middleman
       option :process_url, nil, 'Proc for processing a URL'
       option :exclude_if, ->(resource) { false }
 
-      def after_configuration
-        register_extension_templates
-      end
-
       def manipulate_resource_list(resources)
         resources << sitemap_resource
       end
@@ -49,14 +45,7 @@ module Middleman
       end
 
       def page_ext
-        File.extname(app.index_file)
-      end
-
-      def register_extension_templates
-        # We call reload_path to register the templates directory with Middleman.
-        # The path given to app.files must be relative to the Middleman site's root.
-        templates_dir_relative_from_root = Pathname(TEMPLATES_DIR).relative_path_from(Pathname(app.root))
-        app.files.reload_path(templates_dir_relative_from_root)
+        File.extname(app.config.index_file)
       end
 
       def sitemap_resource
