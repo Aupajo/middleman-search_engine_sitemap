@@ -21,15 +21,20 @@ module MiddlemanServerHelpers
     setup_environment(path)
 
     @app = lambda do
-      instance = Middleman::Application.server.inst do
+      instance = ::Middleman::Application.new do
+        config[:watcher_disable] = true
+        config[:show_exceptions] = false
+
         # Require the pagination extension after the
         # server has booted, as would typically happen.
         require File.expand_path('../../../lib/middleman/search_engine_sitemap', __FILE__)
 
-        instance_exec(&block)
+        app.after_configuration_eval do
+          config_context.instance_exec(&block)
+        end
       end
 
-      instance.class.to_rack_app
+      ::Middleman::Rack.new(instance).to_app
     end
   end
 
