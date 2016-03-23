@@ -9,7 +9,6 @@ describe "Search engine sitemaps", :feature do
     run_site 'dummy' do
       set :url_root, 'http://example.com'
       activate :search_engine_sitemap
-
       ignore '/ignored.html'
     end
 

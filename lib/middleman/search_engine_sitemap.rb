@@ -15,7 +15,7 @@ module Middleman
       option :exclude_if, ->(resource) { false }
 
       def after_configuration
-        register_extension_templates
+        # register_extension_templates
       end
 
       def manipulate_resource_list(resources)
@@ -49,7 +49,7 @@ module Middleman
       end
 
       def page_ext
-        File.extname(app.index_file)
+        File.extname(app.config.index_file)
       end
 
       def register_extension_templates
