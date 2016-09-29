@@ -14,10 +14,16 @@ For more information on the standard itself, please visit http://www.sitemaps.or
 
 ## Installation
 
-Add this line to your Middleman site's `Gemfile`:
+Add this line to your Middleman 4.x site's `Gemfile`:
 
 ```ruby
 gem 'middleman-search_engine_sitemap'
+```
+
+If you're using Middleman 3.x, use version 1.3:
+
+```ruby
+gem 'middleman-search_engine_sitemap', '~> 1.3.0'
 ```
 
 And then execute:
