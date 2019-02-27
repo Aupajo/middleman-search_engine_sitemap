@@ -1,3 +1,9 @@
+# Unmaintained
+
+_I'm no longer maintaining this project, as I haven't used it in quite some time, and I've lost touch with what's happening inside the Middleman codebase. If you would like to take over as the maintainer, please open an Issue. Thanks!_
+
+---
+
 # Middleman Search Engine Sitemap
 
 [![Build Status](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap.png?branch=master)](https://travis-ci.org/Aupajo/middleman-search_engine_sitemap)
